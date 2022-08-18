@@ -29,7 +29,7 @@ function playerSelection() {
   }
 }
 
-function roundPlay(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   console.log(playerSelection);
   if (playerSelection == "ROCK" && computerSelection == "Scissors") {
     return "You Win! Rock beats scissors.";
@@ -52,7 +52,7 @@ function game() {
   var score = 0;
   var computerScore = 0;
   for (let i = 0; i < 5; i++) {
-    let outcome = roundPlay(playerSelection(), getComputerChoice());
+    let outcome = playRound(playerSelection(), getComputerChoice());
     if (outcome.includes("Win!") == true) {
       var score = score + 1;
       console.log(score);
@@ -60,6 +60,7 @@ function game() {
     } else if (outcome.includes("Lost!") == true) {
       var computerScore = computerScore + 1;
       console.log(score);
+
       console.log(computerScore);
     } else if (outcome.includes("Draw!") == true) {
       var score = score + 1;
@@ -77,5 +78,20 @@ function game() {
   }
 }
 
-console.log(game());
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (document.querySelector("#rock") !== null) {
+      console.log("worked");
+      console.log(playRound("ROCK", getComputerChoice()));
+    } else if (document.querySelector("#paper") != null) {
+      console.log(playRound("PAPER", getComputerChoice()));
+    } else if (document.querySelector("#scissors") != null) {
+      console.log(playRound("SCISSORS", getComputerChoice()));
+    }
+  });
+});
+
+//console.log(game());
 //console.log(game())
