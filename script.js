@@ -1,3 +1,6 @@
+let score = 0;
+let computerScore = 0;
+
 function randomInt() {
   return Math.floor(Math.random() * 3);
 }
@@ -32,59 +35,49 @@ function playerSelection() {
 function playRound(playerSelection, computerSelection) {
   console.log(playerSelection);
   if (playerSelection == "ROCK" && computerSelection == "Scissors") {
+    score = score + 1;
     return "You Win! Rock beats scissors.";
   } else if (playerSelection == "PAPER" && computerSelection == "Rock") {
+    score = score + 1;
     return "You Win! Paper beats rock.";
   } else if (playerSelection == "SCISSORS" && computerSelection == "Paper") {
+    score = score + 1;
     return "You Win! Scissors beats paper.";
   } else if (playerSelection == "ROCK" && computerSelection == "Paper") {
+    computerScore = computerScore + 1;
     return "You Lost! Paper beats rock.";
   } else if (playerSelection == "PAPER" && computerSelection == "Scissors") {
+    computerScore = computerScore + 1;
     return "You Lost! Scissors beats paper.";
   } else if (playerSelection == "SCISSORS" && computerSelection == "Rock") {
+    computerScore = computerScore + 1;
     return "You Lost! Rock beats scissors.";
   } else {
     return "Draw!";
   }
 }
 
-function game() {
-  var score = 0;
-  var computerScore = 0;
-  for (let i = 0; i < 5; i++) {
-    let outcome = playRound(playerSelection(), getComputerChoice());
-    if (outcome.includes("Win!") == true) {
-      var score = score + 1;
-      console.log(score);
-      console.log(computerScore);
-    } else if (outcome.includes("Lost!") == true) {
-      var computerScore = computerScore + 1;
-      console.log(score);
-
-      console.log(computerScore);
-    } else if (outcome.includes("Draw!") == true) {
-      var score = score + 1;
-      var computerScore = computerScore + 1;
-      console.log(score);
-      console.log(computerScore);
-    }
-  }
-  if (score > computerScore) {
-    return `${score} - ${computerScore} You Win!`;
-  } else if (score < computerScore) {
-    return `${score} - ${computerScore} You Lose!`;
-  } else {
-    return `${score} - ${computerScore} You Drawed!`;
-  }
-}
+const container = document.querySelector("#button-container");
+const rpsResults = document.querySelector("#score-display");
 
 const buttons = document.querySelectorAll("button");
+
+function displayScore() {
+  if (score < 5 && computerScore < 5) {
+    rpsResults.textContent = `${score} - ${computerScore}`;
+  } else if (score >= 5) {
+    rpsResults.textContent = `${score} - ${computerScore} You Win! `;
+  } else if (computerScore >= 5) {
+    rpsResults.textContent = `${score} - ${computerScore} You Lose! `;
+  }
+}
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     if (document.querySelector("#rock") !== null) {
       console.log("worked");
       console.log(playRound("ROCK", getComputerChoice()));
+      displayScore();
     } else if (document.querySelector("#paper") != null) {
       console.log(playRound("PAPER", getComputerChoice()));
     } else if (document.querySelector("#scissors") != null) {
@@ -94,4 +87,4 @@ buttons.forEach((button) => {
 });
 
 //console.log(game());
-//console.log(game())
+//console.log(game()
