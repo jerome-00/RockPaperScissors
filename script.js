@@ -123,7 +123,7 @@ document.getElementById("rock").addEventListener("click", function () {
 
 document.getElementById("paper").addEventListener("click", function () {
   let computerChoice = getComputerChoice();
-  console.log(playRound("PAPER", getComputerChoice()));
+  console.log(playRound("PAPER", computerChoice));
   getPlayerChoiceEmoji("PAPER");
   getComputerChoiceEmoji(computerChoice);
   console.log("worked papER");
@@ -132,7 +132,7 @@ document.getElementById("paper").addEventListener("click", function () {
 
 document.getElementById("scissors").addEventListener("click", function () {
   let computerChoice = getComputerChoice();
-  console.log(playRound("SCISSORS", getComputerChoice()));
+  console.log(playRound("SCISSORS", computerChoice));
   getPlayerChoiceEmoji("SCISSORS");
   getComputerChoiceEmoji(computerChoice);
   console.log("worked scissORS");
